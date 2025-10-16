@@ -1,0 +1,35 @@
+-- fix crm_cust_info
+
+
+INSERT INTO silver.crm_cust_info (
+			cst_id, 
+			cst_key, 
+			cst_firstname, 
+			cst_lastname, 
+			cst_marital_status, 
+			cst_gndr,
+			cst_create_date
+		)
+select 
+cst_id,
+cst_key,
+TRIM(cst_firstname) as cst_firstname,
+TRIM(cst_lastname) as cst_lastname,
+CASE
+ WHEN Upper(TRIM(cst_marital_status)) = 'S' then 'Single'
+ WHEN Upper(TRIM(cst_marital_status)) = 'M' then 'Married'
+ else 'n/a'
+ end as cst_marital_status,
+ CASE
+ WHEN Upper(TRIM(cst_gndr)) = 'M' then 'Male'
+ WHEN Upper(TRIM(cst_gndr)) = 'F' then 'Female'
+ else 'n/a'
+ end as cst_gndr,
+ cst_create_date
+from
+(
+SELECT *,
+ROW_NUMBER() OVER(PARTITION by cst_id ORDER BY cst_create_date DESC) as rank_by_create_date
+from bronze.crm_cust_info
+) as t
+where rank_by_create_date = 1 and cst_id is not null;

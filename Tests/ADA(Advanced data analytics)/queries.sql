@@ -1,8 +1,5 @@
 
 
--- Change over time Analysis 
-
-
 SELECT 
 Year(order_date),
 Month(ORDER_DATE),
@@ -16,7 +13,7 @@ Order by Year(order_date),Month(ORDER_DATE);
 
 
 
--- Performance Analysis
+-- Performance Analysis*****
 
 WITH yearly_product_sales AS (
 SELECT

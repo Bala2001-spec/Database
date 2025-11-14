@@ -1,7 +1,7 @@
 
 Usw Datawarehouse
 
--- fix crm_cust_info
+ fix crm_cust_info
 
 
 INSERT INTO silver.crm_cust_info (
@@ -38,7 +38,7 @@ from bronze.crm_cust_info
 where rank_by_create_date = 1 and cst_id is not null;
 
 
--- fix crm_prd_info
+ fix crm_prd_info
 
 
 IF OBJECT_ID('silver.crm_prd_info', 'U') IS NOT NULL
@@ -97,7 +97,7 @@ from bronze.crm_prd_info
 
 
 
--- fix crm sales_details 
+ fix crm sales_details 
 
 
 
@@ -121,7 +121,7 @@ CREATE TABLE silver.crm_sales_details (
 
 	
 
--- insert into crm_sales_details 
+ insert into crm_sales_details 
 
 
 INSERT INTO silver.crm_sales_details (
@@ -170,7 +170,7 @@ INSERT INTO silver.crm_sales_details (
 
 
 
--- insert into silver  erp_cust_az12
+ insert into silver  erp_cust_az12
 
 
 
@@ -201,7 +201,7 @@ SELECT
 
 
 
--- INSERT into silver.erp_loc_a101;
+ INSERT into silver.erp_loc_a101;
 
 
 
@@ -224,7 +224,7 @@ FROM bronze.erp_loc_a101;
 
 
 
--- fixing silver.erp_px_cat_g1v2 
+ fixing silver.erp_px_cat_g1v2 
 
 
 
